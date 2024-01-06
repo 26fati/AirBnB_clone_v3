@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" objects that handle all default RestFul API actions for States """
+""" objects that handle all default RestFul API actions for Users """
 from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from models.user import User
@@ -55,7 +55,6 @@ def create_user():
         abort(400, description="Missing email")
     if 'password' not in request.get_json():
         abort(400, description="Missing password")
-    
     data = request.get_json()
     user = User(**data)
     user.save()
@@ -74,7 +73,7 @@ def update_user_by_id(user_id):
         abort(400, description="Not a JSON")
     data = request.get_json()
     for key, value in data.items():
-        if key not in ["id", "created_at", "updated_at"]:
+        if key not in ["id", "email", "created_at", "updated_at"]:
             setattr(user, key, value)
     storage.save()
     return make_response(jsonify(user.to_dict()), 200)

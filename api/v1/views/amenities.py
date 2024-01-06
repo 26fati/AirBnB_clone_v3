@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" objects that handle all default RestFul API actions for cities """
+""" objects that handle all default RestFul API actions for Amenties """
 from api.v1.views import app_views
 from flask import jsonify, abort, make_response, request
 from models.amenity import Amenity
