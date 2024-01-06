@@ -86,7 +86,7 @@ def update_place(place_id):
         abort(400, description="Not a JSON")
     data = request.get_json()
     for key, value in data.items():
-        if key not in ["id", "created_at", "updated_at"]:
+        if key not in ["id", "created_at", "updated_at", "user_id", "city_i"]:
             setattr(place, key, value)
     storage.save()
     return make_response(jsonify(place.to_dict()), 200)
